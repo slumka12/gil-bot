@@ -5,7 +5,8 @@ playing=["With Yofi",
          "TMG podcast be fire tho",
          "Time is a relative concept",
          "Meeting hot milfs in my area",
-         "cards with my personal friend Bradley Cooper", "Air Guitar Violently",
+         "cards with my personal friend Bradley Cooper",
+         "Air Guitar Violently",
          "A little game  i like to call how many dicks can fit in my ass"]
 
 minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
