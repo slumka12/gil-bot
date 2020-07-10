@@ -107,7 +107,6 @@ async def help(ctx, com=None):
         except:
             await ctx.send('Couldn\'t get command')
 
-
 @client.command()
 async def test(ctx):
     pass
