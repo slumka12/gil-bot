@@ -7,12 +7,7 @@ import datetime
 ##import sys
 import lists
 import func
-
-
-#Me, Connor, Mark, Flics
-admin=["382987612736192512","640393413425889314","694254356601503855","264808033220165632"]
-#Millie, Toby
-mocking=["487403997393715210","265581590086680576"]
+import AdMo
 
 me="382987612736192512"
 botID="702143271144783904"
@@ -74,8 +69,9 @@ async def on_message(message):
     if str(message.author.id)==("462885213215916034"):
         await message.channel.send('Shut up Frog.')
         await message.delete()
-    if str(message.author.id) in mocking:
+    if str(message.author.id) in AdMo.mocking:
         await message.channel.send(func.sponge(message.content))
+        await client.process_commands(message)
     else:
         await client.process_commands(message)
 
@@ -164,6 +160,21 @@ async def clear(ctx, num=6):
 async def void(ctx, num=6):
     if (str(ctx.author.id) in admin):
         await ctx.channel.purge(limit=num+1)
+
+@client.command(description="Adds/removes someone to admin list\n .admin <mention>")
+async def admin(ctx, member : discord.Member):
+    if str(ctx.author.id)==me:
+        func.adminMock(str(member.id),0)
+
+@client.command(description="Adds/removes someone to mock list\n .mock <mention>")
+async def mock(ctx, member : discord.Member):
+    func.adminMock(str(member.id),1)
+
+@client.command(description="Shows the AdMo list\n .mock <mention>")
+async def admo(ctx):
+    embed = make_embed(ctx, title='admo',description=("Admin: "+str(AdMo.admin)+"\nMocking: "+str(AdMo.mocking)))
+    await ctx.send(embed=embed)
+
 
 @client.command(description="Grabs a random Wikipedia Article")
 async def wiki(ctx):

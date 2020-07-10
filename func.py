@@ -17,7 +17,21 @@ def wikiTitle(link):
     h=h1.text
     return h
 
-
+def adminMock(userId, mode):
+    import AdMo
+    listA=AdMo.admin
+    listM=AdMo.mocking
+    if (userId in listA) and (mode==0):
+        listA.remove(userId)
+    elif (userId not in listA) and (mode==0):
+        listA.append(userId)
+    elif (userId in listM) and (mode==1):
+        listM.remove(userId)
+    elif (userId not in listM) and (mode==1):
+        listM.append(userId)
+    file=open("AdMo.py","w")
+    file.write("admin="+str(listA)+"\nmocking="+str(listM))
+    file.close()
 
 def sponge(words):
     words=str(words)
