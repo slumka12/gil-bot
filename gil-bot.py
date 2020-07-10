@@ -228,7 +228,6 @@ async def frick(ctx, member : discord.Member):
 async def sponge(ctx, *, words):
   await ctx.send(func.sponge(words))
 
-
 ##@client.command(description="Die",aliases=["kill"])
 ##async def die(ctx):
 ##    if str(ctx.author.id)==me:
