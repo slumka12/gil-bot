@@ -229,11 +229,11 @@ async def sponge(ctx, *, words):
   await ctx.send(func.sponge(words))
 
 
-@client.command(description="Die",aliases=["kill"])
-async def die(ctx):
-    if str(ctx.author.id)==me:
-        await ctx.send(str(random.choice(lists.die)))
-        quit()
+##@client.command(description="Die",aliases=["kill"])
+##async def die(ctx):
+##    if str(ctx.author.id)==me:
+##        await ctx.send(str(random.choice(lists.die)))
+##        quit()
 
 
 client.run('NzAyMTQzMjcxMTQ0NzgzOTA0.Xp7wew.lqrG8WSK2aAUlMam43UfMxgcl94')
