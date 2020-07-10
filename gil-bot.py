@@ -192,32 +192,27 @@ async def kick(ctx, member: discord.Member, reason=None):
 @client.command(description="Minion haha")
 async def minyin(ctx):
     info=redditGrab.imageScrape("MinionMemes")
-    await ctx.send(info[0])
-    await ctx.send(info[1])
+    await ctx.send(info[0]+"\n"+info[1])
 
 @client.command(description="Top Tier Sesame Street")
 async def bert(ctx):
     info=redditGrab.imageScrape("bertstrips")
-    await ctx.send(info[0])
-    await ctx.send(info[1])
+    await ctx.send(info[0]+"\n"+info[1])
 
 @client.command(description="MEEM", aliases=["mem","emem","meem"])
 async def meme(ctx):
     info=redditGrab.imageScrape("dankmemes")
-    await ctx.send(info[0])
-    await ctx.send(info[1])
+    await ctx.send(info[0]+"\n"+info[1])
 
 @client.command(description="Blursed Images")
 async def blursed(ctx):
     info=redditGrab.imageScrape("blursedimages")
-    await ctx.send(info[0])
-    await ctx.send(info[1])
+    await ctx.send(info[0]+"\n"+info[1])
 
 @client.command(description=".reddit <sub name>")
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
-    await ctx.send(info[0])
-    await ctx.send(info[1])
+    await ctx.send(info[0]+"\n"+info[1])
 
 @client.command(description="Check the number of times someone's said fuck\n .frick <mention>")
 async def frick(ctx, member : discord.Member):
