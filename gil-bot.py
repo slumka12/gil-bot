@@ -242,8 +242,7 @@ async def fetch(ctx, member : discord.Member,word):
 
 @client.command(description="Shows the tracked words")
 async def tracked(ctx):
-    wordNum=func.wordGrab(str(member.id),word)
-    embed = make_embed(ctx, title='Tracked Words',description=(str(counted))
+    embed = make_embed(ctx, title='Tracked Words',description=(str(counted)))
     await ctx.send(embed=embed)
 
 
