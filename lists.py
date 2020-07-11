@@ -11,7 +11,10 @@ playing=["With Yofi",
          "Valorant? Lmao Nah",
          "ROBLOX",
          "With my prisoners",
-         "Hi Toby!!"]
+         "Hi Toby!!",
+         "minecraft ig?",
+         "Don't do drugs kids",
+         "Stay in drugs. Don't do school!"]
 
 minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
         "https://i.redd.it/l8lumq449cu21.png",

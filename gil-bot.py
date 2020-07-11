@@ -160,7 +160,7 @@ async def dm(ctx, member : discord.Member, num=10, *, words):
         pass
 
 @client.command(description="Clears some messages\n .clear <number>")
-@commands.has_permissions(ban_members=True, kick_members=True)
+@commands.has_permissions(manage_messages=True)
 async def clear(ctx, num=6):
     await ctx.channel.purge(limit=num+1)
 
