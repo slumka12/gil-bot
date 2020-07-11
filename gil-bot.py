@@ -235,10 +235,17 @@ async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
     await ctx.send(info[0]+"\n"+info[1])
 
-@client.command(description="Check the number of times someone's said fuck\n .frick <mention>")
+@client.command(description="Check the number of times someone's said a word\n .fetch <mention>")
 async def fetch(ctx, member : discord.Member,word):
     wordNum=func.wordGrab(str(member.id),word)
     await ctx.send(f"{member.mention} has said {word} {wordNum} times.")
+
+@client.command(description="Shows the tracked words")
+async def tracked(ctx):
+    wordNum=func.wordGrab(str(member.id),word)
+    embed = make_embed(ctx, title='Tracked Words',description=(str(counted))
+    await ctx.send(embed=embed)
+
 
 @client.command(description="Yes hahaha very funny meem\n .sponge <content>")
 async def sponge(ctx, *, words):

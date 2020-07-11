@@ -14,7 +14,10 @@ playing=["With Yofi",
          "Hi Toby!!",
          "minecraft ig?",
          "Don't do drugs kids",
-         "Stay in drugs. Don't do school!"]
+         "Stay in drugs. Don't do school!",
+         "Hypixel>Mineplex",
+         "Do you like the bot?",
+         "There's chemicals in the water that turn the fricken frogs gay!"]
 
 minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
         "https://i.redd.it/l8lumq449cu21.png",
