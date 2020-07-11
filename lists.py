@@ -7,7 +7,11 @@ playing=["With Yofi",
          "Meeting hot milfs in my area",
          "cards with my personal friend Bradley Cooper",
          "Air Guitar Violently",
-         "A little game  i like to call how many dicks can fit in my ass"]
+         "A little game I like to call how many dicks can fit in my ass",
+         "Valorant? Lmao Nah",
+         "ROBLOX",
+         "With my prisoners",
+         "Hi Toby!!"]
 
 minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
         "https://i.redd.it/l8lumq449cu21.png",

@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands,tasks
 import random
 import redditGrab
 import time
@@ -16,8 +16,16 @@ client = commands.Bot(command_prefix='.')
 
 @client.event
 async def on_ready():
+    stat.start()
     print('{0.user}'.format(client)+" is online")
     await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
+
+@tasks.loop(hours=12)
+async def stat():
+    print('{0.user}'.format(client)+" changed status")
+    await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
+
+
 ##    try:
 ##        profpic=random.choice(lists.prof)
 ##        print(profpic)
