@@ -12,15 +12,17 @@ import AdMo
 me="382987612736192512"
 botID="702143271144783904"
 
+counted=["fuck","shit","pog"]
+
 client = commands.Bot(command_prefix='.')
 
 @client.event
 async def on_ready():
     stat.start()
     print('{0.user}'.format(client)+" is online")
-    await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
+    #await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
 
-@tasks.loop(hours=12)
+@tasks.loop(hours=8)
 async def stat():
     print('{0.user}'.format(client)+" changed status")
     await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
@@ -63,11 +65,12 @@ async def on_message(message):
         if str(message.author.id)!= "702143271144783904":
             if random.randint(0,100)==69:
                 await message.channel.send("Woah there. Watch your language.")
-    if "fuck" in message.content.lower():
+    if any(word in message.content.lower() for word in counted):
         if str(message.author.id)!="702143271144783904":
-            num=func.phraseNum(message.content.lower(),"fuck")
-            func.fuckAdd(message.author.id,num)
-            print("Added "+str(num)+" to "+str(message.author)+"'s fuck count")
+            for i in counted:
+                if i in message.content.lower():
+                    num=func.phraseNum(message.content.lower(),i)
+                    func.wordAdd(str(message.author.id),i,num)
     if "ilan" in message.content.lower():
         if str(message.author.id)!= "702143271144783904":
             await message.channel.send(str(("Guys remember that time "+random.choice(lists.ilan))))
@@ -79,8 +82,7 @@ async def on_message(message):
         await message.delete()
     if str(message.author.id) in AdMo.mocking:
         await message.channel.send(func.sponge(message.content))
-        await client.process_commands(message)
-    else:
+    if True==True:
         await client.process_commands(message)
 
 #####Commands
@@ -234,9 +236,9 @@ async def reddit(ctx, sub):
     await ctx.send(info[0]+"\n"+info[1])
 
 @client.command(description="Check the number of times someone's said fuck\n .frick <mention>")
-async def frick(ctx, member : discord.Member):
-    fuckNum=func.fuckGrab(member.id)
-    await ctx.send(f"{member.mention}"+" has said the frick word "+str(fuckNum)+" times.")
+async def fetch(ctx, member : discord.Member,word):
+    wordNum=func.wordGrab(str(member.id),word)
+    await ctx.send(f"{member.mention} has said {word} {wordNum} times.")
 
 @client.command(description="Yes hahaha very funny meem\n .sponge <content>")
 async def sponge(ctx, *, words):

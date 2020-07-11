@@ -61,22 +61,70 @@ def phraseNum(whole,part):
            count+=1
     return count
 
-def fuckAdd(memID,num):
-    import ftime
-    fdic=ftime.dic
-    if memID in fdic:
-        fdic[memID]+=num
-    if memID not in fdic:
-        temp={memID:1}
-        fdic.update(temp)
-    file=open("ftime.py","w")
-    file.write("dic="+str(fdic))
+def wordAdd(memID,word,num):
+    import json
+    file=open("wordCount.json","r")
+    count=json.load(file)
     file.close()
-def fuckGrab(memID):
-    import ftime
-    fdic=ftime.dic
-    if memID in fdic:
-        return fdic[memID]
-    if memID not in fdic:
-        return "no"
+    if memID not in count:
+        temp=count["blank"]
+        #print(temp)
+        count.update({memID:temp})
+    elif memID in count:
+        mem=count[memID]
+        mem[word]+=num
+
+    file=open("wordCount.json","w")
+    json.dump(count,file)
+    file.close()
+
+
+def wordGrab(memID,word):
+    import json
+    file=open("wordCount.json","r")
+    count=json.load(file)
+    file.close()
+    #print(count)
+    if memID in count:
+        mem=count[memID]
+        return mem[word]
+    if memID not in count:
+        return "no"   
+
+
+
+def keyAdd(key):
+    import json
+    file=open("wordCount.json","r")
+    count=json.load(file)
+    file.close()
+    for i in count:
+        mem=count[i]
+        temp={key:0}
+        mem.update(temp)
+        print(mem)
+    file=open("wordCount.json","w")
+    json.dump(count,file)
+    file.close()
+
+
+
+##def fuckAdd(memID,num):
+##    import ftime
+##    fdic=ftime.dic
+##    if memID in fdic:
+##        fdic[memID]+=num
+##    if memID not in fdic:
+##        temp={memID:1}
+##        fdic.update(temp)
+##    file=open("ftime.py","w")
+##    file.write("dic="+str(fdic))
+##    file.close()
+##def fuckGrab(memID):
+##    import ftime
+##    fdic=ftime.dic
+##    if memID in fdic:
+##        return fdic[memID]
+##    if memID not in fdic:
+##        return "no"
 
