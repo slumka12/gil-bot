@@ -12,7 +12,7 @@ import AdMo
 me="382987612736192512"
 botID="702143271144783904"
 
-counted=["fuck","shit","pog"]
+counted=["fuck","shit","pog","wm?"]
 
 client = commands.Bot(command_prefix='.')
 
@@ -210,7 +210,7 @@ async def kick(ctx, member: discord.Member, reason=None):
 ##async def bello(ctx):
 ##    await ctx.send(str(random.choice(lists.minion)))
 
-@client.command(description="Minion haha")
+@client.command(description="Minion haha",aliases=["minion","bello"])
 async def minyin(ctx):
     info=redditGrab.imageScrape("MinionMemes")
     await ctx.send(info[0]+"\n"+info[1])
@@ -244,7 +244,6 @@ async def fetch(ctx, member : discord.Member,word):
 async def tracked(ctx):
     embed = make_embed(ctx, title='Tracked Words',description=(str(counted)))
     await ctx.send(embed=embed)
-
 
 @client.command(description="Yes hahaha very funny meem\n .sponge <content>")
 async def sponge(ctx, *, words):
