@@ -63,6 +63,7 @@ def phraseNum(whole,part):
 
 def wordAdd(memID,word,num):
     import json
+    dumb=False
     file=open("wordCount.json","r")
     count=json.load(file)
     file.close()
@@ -70,6 +71,7 @@ def wordAdd(memID,word,num):
         temp=count["blank"]
         #print(temp)
         count.update({memID:temp})
+        dumb=True
     elif memID in count:
         mem=count[memID]
         mem[word]+=num
@@ -77,7 +79,11 @@ def wordAdd(memID,word,num):
     file=open("wordCount.json","w")
     json.dump(count,file)
     file.close()
+    if dumb==True:
+        interMed(memID, word, num)
 
+def interMed(memID, word, num):
+    wordAdd(memID, word, num)
 
 def wordGrab(memID,word):
     import json
