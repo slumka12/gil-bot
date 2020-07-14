@@ -168,7 +168,7 @@ async def clear(ctx, num=6):
 
 @client.command(description="Clears some messages")
 async def void(ctx, num=6):
-    if (str(ctx.author.id) in Admo.admin):
+    if (str(ctx.author.id) in AdMo.admin):
         await ctx.channel.purge(limit=num+1)
 
 @client.command(description="Adds/removes someone to admin list\n .admin <mention>")
@@ -202,7 +202,7 @@ async def clean(ctx, num=6):
 
 @client.command(description='Kick someone\n .kick <mention> <reason>')
 async def kick(ctx, member: discord.Member, reason=None):
-    if (str(ctx.author.id) in Admo.admin) and (str(member.id) not in Admo.admin):
+    if (str(ctx.author.id) in AdMo.admin) and (str(member.id) not in AdMo.admin):
         await member.kick(reason=reason)
         await ctx.send(f'{member} kicked because: {reason}')
 
