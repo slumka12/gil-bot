@@ -1,3 +1,5 @@
+#Lists associated with the bot
+
 playing=["With Yofi",
          "Skyrim",
          "Bioshock",
