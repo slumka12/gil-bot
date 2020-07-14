@@ -2,12 +2,11 @@ playing=["With Yofi",
          "Skyrim",
          "Bioshock",
          "Not Fortnite bc fuck that shit",
-         "TMG podcast be fire tho",
          "Time is a relative concept",
          "Meeting hot milfs in my area",
          "cards with my personal friend Bradley Cooper",
          "Air Guitar Violently",
-         "A little game I like to call how many dicks can fit in my ass",
+         #"A little game I like to call how many dicks can fit in my ass",
          "Valorant? Lmao Nah",
          "ROBLOX",
          "With my prisoners",
@@ -17,15 +16,36 @@ playing=["With Yofi",
          "Stay in drugs. Don't do school!",
          "Hypixel>Mineplex",
          "Do you like the bot?",
-         "There's chemicals in the water that turn the fricken frogs gay!"]
+         "There's chemicals in the water that turn the fricken frogs gay!",
+         "I never meant to give you mushrooms girl",
+         "Ah shit, here we go again",
+         "me like a dummy like bitch are you dumb",
+         "dat one x song that go woo",
+         "Remember Villager News?",
+         "ZA WARUDO",
+         "WAAAAAAAAA",
+         "Hi kids, do you like violence?",
+         "Keanuwu *nuzzles you*",
+         "But like, did you see the dog?",
+         "2 EZ 4 MAG 7!!!",
+         "LESS EZ 4 XM!!!",
+         "Kids are just small people",
+         "What's the difference between a baby and a football?"
+         "Inertia is a property of matter",
+         '"The fifth president was Lincoln, right?" ~Maggie Skyler Moo Deutsch',
+         "Bababooey",
+         "It's not gay if you have socks on",
+         "WEAR A MASK!!!!"
+         "Say my name",
+         "and knuckles"]
 
-minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
-        "https://i.redd.it/l8lumq449cu21.png",
-        "https://cosbymemes.com/wp-content/uploads/2019/12/Top-25-New-Minion-Memes-1-1024x931.jpeg",
-        "https://pbs.twimg.com/media/EBO_a8AX4AEFNL1.jpg",
-        "https://i.redd.it/812oi54pgvuy.jpg",
-        "https://i.insider.com/5955728816160fa6018b485c?width=1100&format=jpeg&auto=webp",
-        "https://cosbymemes.com/wp-content/uploads/2019/12/Top-25-New-Minion-Memes-1-1024x812.jpg"]
+##minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
+##        "https://i.redd.it/l8lumq449cu21.png",
+##        "https://cosbymemes.com/wp-content/uploads/2019/12/Top-25-New-Minion-Memes-1-1024x931.jpeg",
+##        "https://pbs.twimg.com/media/EBO_a8AX4AEFNL1.jpg",
+##        "https://i.redd.it/812oi54pgvuy.jpg",
+##        "https://i.insider.com/5955728816160fa6018b485c?width=1100&format=jpeg&auto=webp",
+##        "https://cosbymemes.com/wp-content/uploads/2019/12/Top-25-New-Minion-Memes-1-1024x812.jpg"]
 
 prof=["https://ibb.co/g7cN19C",
       "https://ibb.co/NWwMSgj",
@@ -51,9 +71,6 @@ swears=["fuck",
         "ass",
         "bitch",
         "cunt"]
-
-start=["Ah shit, here we go again",
-       "I HAVE RETURNED!!"]
 
     
 die=["Goodbye Cruel World!!",

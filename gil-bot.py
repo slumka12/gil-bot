@@ -22,7 +22,7 @@ async def on_ready():
     print('{0.user}'.format(client)+" is online")
     #await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
 
-@tasks.loop(hours=8)
+@tasks.loop(hours=4)
 async def stat():
     print('{0.user}'.format(client)+" changed status")
     await client.change_presence(activity=discord.Game(name=str(random.choice(lists.playing)),url='https://www.pornhub.com'))
