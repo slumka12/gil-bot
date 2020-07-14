@@ -1,3 +1,6 @@
+#All the functions for the bot
+
+
 def make_soup(url,feat="html"):
     import requests
     from bs4 import BeautifulSoup 
