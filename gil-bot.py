@@ -128,7 +128,7 @@ async def mention(ctx, member : discord.Member):
 @client.command(description="Pings someone a bunch of times\n .spam <mention> <number> <content>")
 async def spam(ctx, member : discord.Member, num=10, *, words):
     left=num
-    if (str(ctx.author.id) in admin) and (str(member.id)!=me):
+    if (str(ctx.author.id) in AdMo.admin) and (str(member.id)!=me):
         for i in range(int(num)):
             await ctx.send(f"{member.mention}, "+str(words))
             time.sleep(.5)
@@ -140,7 +140,7 @@ async def spam(ctx, member : discord.Member, num=10, *, words):
 @client.command(description="Repeats a message\n .rep <number> <content>")
 async def rep(ctx, num=10, *, words):
     left=num
-    if (str(ctx.author.id) in admin):
+    if (str(ctx.author.id) in AdMo.admin):
         for i in range(int(num)):
             await ctx.send(str(words))
             time.sleep(.5)
@@ -152,7 +152,7 @@ async def rep(ctx, num=10, *, words):
 @client.command(description="Dms someone a bunch of times\n .dm <mention> <number> <content>")
 async def dm(ctx, member : discord.Member, num=10, *, words):
     left=num
-    if (str(ctx.author.id) in admin) and (str(member.id)!=me):
+    if (str(ctx.author.id) in AdMo.admin) and (str(member.id)!=me):
         for i in range(int(num)):
             await member.send(f"{member.mention}, "+str(words))
             time.sleep(.5)
@@ -168,7 +168,7 @@ async def clear(ctx, num=6):
 
 @client.command(description="Clears some messages")
 async def void(ctx, num=6):
-    if (str(ctx.author.id) in admin):
+    if (str(ctx.author.id) in Admo.admin):
         await ctx.channel.purge(limit=num+1)
 
 @client.command(description="Adds/removes someone to admin list\n .admin <mention>")
@@ -202,7 +202,7 @@ async def clean(ctx, num=6):
 
 @client.command(description='Kick someone\n .kick <mention> <reason>')
 async def kick(ctx, member: discord.Member, reason=None):
-    if (str(ctx.author.id) in admin) and (str(member.id) not in admin):
+    if (str(ctx.author.id) in Admo.admin) and (str(member.id) not in Admo.admin):
         await member.kick(reason=reason)
         await ctx.send(f'{member} kicked because: {reason}')
 
