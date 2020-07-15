@@ -37,7 +37,7 @@ playing=["With Yofi",
          '"The fifth president was Lincoln, right?" ~Maggie Skyler Moo Deutsch',
          "Bababooey",
          "It's not gay if you have socks on",
-         "WEAR A MASK!!!!"
+         "WEAR A MASK!!!!",
          "Say my name",
          "and knuckles"]
 
