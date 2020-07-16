@@ -61,6 +61,13 @@ async def on_message(message):
     if "turtle" in message.content.lower():
         if str(message.author.id)!= "702143271144783904":
             await message.channel.send("We don't say that name in this house")
+    if ("superhot" in message.content.lower())or("super hot" in message.content.lower()):
+        if str(message.author.id)!= "702143271144783904":
+            for i in range(4):
+                await message.channel.send("SUPER")
+                time.sleep(.5)
+                await message.channel.send("HOT")
+                time.sleep(.75)
     if any(ele in (message.content.lower()) for ele in lists.swears):
         if str(message.author.id)!= "702143271144783904":
             if random.randint(0,100)==69:
