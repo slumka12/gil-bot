@@ -207,6 +207,14 @@ async def clean(ctx, num=6):
     msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
     await msg.delete(delay=2.5)
 
+@client.command(description="Clears Member Messages\n .clean <mention>")
+async def sift(ctx, member : discord.Member, num=6):
+    def is_them(m):
+        return m.author == member
+    deleted = await ctx.channel.purge(limit=num, check=is_them)
+    msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
+    await msg.delete(delay=2.5)
+
 @client.command(description='Kick someone\n .kick <mention> <reason>')
 async def kick(ctx, member: discord.Member, reason=None):
     if (str(ctx.author.id) in AdMo.admin) and (str(member.id) not in AdMo.admin):
