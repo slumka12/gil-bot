@@ -207,7 +207,7 @@ async def clean(ctx, num=6):
     msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
     await msg.delete(delay=2.5)
 
-@client.command(description="Clears Member Messages\n .clean <mention>")
+@client.command(description="Clears Member Messages\n .sift <mention>")
 async def sift(ctx, member : discord.Member, num=6):
     def is_them(m):
         return m.author == member
