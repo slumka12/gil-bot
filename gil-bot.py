@@ -256,6 +256,12 @@ async def tracked(ctx):
 async def sponge(ctx, *, words):
   await ctx.send(func.sponge(words))
 
+@client.command(description="Send the invite link")
+async def invite(ctx):
+    embed=make_embed(ctx,title="Invite me to your server!",link="https://discord.com/api/oauth2/authorize?client_id=702143271144783904&permissions=8&scope=bot")
+    await ctx.send(embed=embed)
+
+
 @client.command(description="Die",aliases=["kill"])
 async def reload(ctx):
     if str(ctx.author.id)==me:
