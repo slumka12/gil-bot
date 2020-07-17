@@ -284,4 +284,4 @@ async def reload(ctx):
 ##        quit()
 
 
-client.run('NzAyMTQzMjcxMTQ0NzgzOTA0.Xp7wew.lqrG8WSK2aAUlMam43UfMxgcl94')
+client.run('NzAyMTQzMjcxMTQ0NzgzOTA0.XxIbiA.2QGRh8F39l0TWNnNhfHAjQQARPU')
