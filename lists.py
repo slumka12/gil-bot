@@ -32,7 +32,7 @@ playing=["With Yofi",
          "2 EZ 4 MAG 7!!!",
          "LESS EZ 4 XM!!!",
          "Kids are just small people",
-         "What's the difference between a baby and a football?"
+         "What's the difference between a baby and a football?",
          "Inertia is a property of matter",
          '"The fifth president was Lincoln, right?" ~Maggie Skyler Moo Deutsch',
          "Bababooey",
@@ -68,7 +68,13 @@ playing=["With Yofi",
          "Do you know the definition of insanity?",
          "A man chooses. A slave obeys",
          "SUPERHOT is the most innovative shooter I've played in years!",
-         "Ninke Minjaj"]
+         "Ninke Minjaj",
+         "Back in the 90s, I was in a very famous TV show",
+         "Back in 07, I was in an unsuccessful TV show",
+         "Lawnmower? I hardly know her!",
+         "Do you wanna know how I got these scars?",
+         "Would you kindly?",
+         "spujb"]
 
 ##minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
 ##        "https://i.redd.it/l8lumq449cu21.png",
