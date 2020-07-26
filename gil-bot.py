@@ -216,12 +216,22 @@ async def clean(ctx, num=6):
     await msg.delete(delay=2.5)
 
 @client.command(description="Clears Member Messages\n .sift <mention>")
+@commands.has_permissions(manage_messages=True)
 async def sift(ctx, member : discord.Member, num=6):
     def is_them(m):
         return m.author == member
     deleted = await ctx.channel.purge(limit=num, check=is_them)
     msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
     await msg.delete(delay=2.5)
+
+@client.command(description="Clears Member Messages\n .vsift <mention>")
+async def vsift(ctx, member : discord.Member, num=6):
+    if str(ctx.author.id) in AdMo.admin:
+        def is_them(m):
+            return m.author == member
+        deleted = await ctx.channel.purge(limit=num, check=is_them)
+        msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
+        await msg.delete(delay=2.5)
 
 @client.command(description='Kick someone\n .kick <mention> <reason>')
 async def kick(ctx, member: discord.Member, reason=None):
