@@ -196,9 +196,10 @@ async def admo(ctx):
 @client.command(description="Send a picture to the bot's email\n .send <image link>")
 async def send(ctx,link):
     sub=f"{ctx.author} sent you a picture!!"
-    body=f"This picture was sent through your bot"
+    body="This picture was sent through your bot"
     attach=[link]
     botMail.send(sub,body,attach)
+    await ctx.send("Image sent!")
 
 @client.command(description="Grabs a random Wikipedia Article")
 async def wiki(ctx):
