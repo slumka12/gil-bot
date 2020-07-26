@@ -8,6 +8,7 @@ import datetime
 import lists
 import func
 import AdMo
+import botMail
 
 me="382987612736192512"
 botID="702143271144783904"
@@ -187,11 +188,17 @@ async def admin(ctx, member : discord.Member):
 async def mock(ctx, member : discord.Member):
     func.adminMock(str(member.id),1)
 
-@client.command(description="Shows the AdMo list\n .mock <mention>")
+@client.command(description="Shows the AdMo list\n .admo <mention>")
 async def admo(ctx):
     embed = make_embed(ctx, title='admo',description=("Admin: "+str(AdMo.admin)+"\nMocking: "+str(AdMo.mocking)))
     await ctx.send(embed=embed)
 
+@client.command(description="Send a picture to the bot's email\n .send <image link>")
+async def send(ctx,link):
+    sub=f"{ctx.author} sent you a picture!!"
+    body=f"This picture was sent through your bot"
+    attach=[link]
+    botMail.send(sub,body,attach)
 
 @client.command(description="Grabs a random Wikipedia Article")
 async def wiki(ctx):
@@ -284,4 +291,4 @@ async def reload(ctx):
 ##        quit()
 
 
-client.run('NzAyMTQzMjcxMTQ0NzgzOTA0.XxIbiA.2QGRh8F39l0TWNnNhfHAjQQARPU')
+client.run('NzAyMTQzMjcxMTQ0NzgzOTA0.Xp7v4Q.p-XDpxrKKsz7YL6Ry7gQdKO0IAg')
