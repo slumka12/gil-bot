@@ -21,3 +21,27 @@ def imageScrape(sub):
     #print(pickedTitle)
     pickedInfo=(pickedTitle,pickedUrl)
     return pickedInfo
+
+def karmaScrape(user):
+    redditor=reddit.redditor(user)
+    return redditor.link_karma
+
+def userImageScrape(user):
+    import random
+    temp={}
+    posts=reddit.redditor(user).submissions.top("all")
+    post_to_pick=random.randint(1, 75)
+    count=post_to_pick
+    for submission in reddit.redditor("giruchan").submissions.top("all"):
+        if count==0:
+            print(submission.title)
+        count-=1
+        if (".jpg" in submission.url) or (".png" in submission.url) or (".gif" in submission.url):
+            temp[submission.url]=submission.title
+
+    pickedUrl=random.choice(list(temp.keys()))
+    #print(pickedUrl)
+    pickedTitle=temp[pickedUrl]
+    #print(pickedTitle)
+    pickedInfo=(pickedTitle,pickedUrl)
+    return pickedInfo

@@ -258,15 +258,25 @@ async def meme(ctx):
     info=redditGrab.imageScrape("dankmemes")
     await ctx.send(info[0]+"\n"+info[1])
 
-@client.command(description="Blursed Images")
+@client.command(description="Gets only the finest images on the web")
 async def blursed(ctx):
     info=redditGrab.imageScrape("blursedimages")
     await ctx.send(info[0]+"\n"+info[1])
 
-@client.command(description=".reddit <sub name>")
+@client.command(description="Gets a post off any sub\n .reddit <sub name>")
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
     await ctx.send(info[0]+"\n"+info[1])
+
+@client.command(description="Gets posts from a user\n .redditor <username>")
+async def redditor(ctx, user):
+    info=redditGrab.userImageScrape(user)
+    await ctx.send(info[0]+"\n"+info[1])
+
+@client.command(description="Fetches a users karma\n .karma <username>")
+async def karma(ctx, user):
+    num=redditGrab.karmaScrape(user)
+    await ctx.send(f"{user} has {num} karma")
 
 @client.command(description="Check the number of times someone's said a word\n .fetch <mention>")
 async def fetch(ctx, member : discord.Member,word):
