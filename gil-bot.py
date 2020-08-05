@@ -276,7 +276,7 @@ async def redditor(ctx, user):
 @client.command(description="Fetches a users karma\n .karma <username>")
 async def karma(ctx, user):
     num=redditGrab.karmaScrape(user)
-    await ctx.send(f"{user} has {num} karma")
+    await ctx.send(f"{user.capitalize()} has {num} karma")
 
 @client.command(description="Check the number of times someone's said a word\n .fetch <mention>")
 async def fetch(ctx, member : discord.Member,word):

@@ -32,7 +32,7 @@ def userImageScrape(user):
     posts=reddit.redditor(user).submissions.top("all")
     post_to_pick=random.randint(1, 75)
     count=post_to_pick
-    for submission in reddit.redditor("giruchan").submissions.top("all"):
+    for submission in reddit.redditor(user).submissions.top("all"):
         if count==0:
             print(submission.title)
         count-=1
