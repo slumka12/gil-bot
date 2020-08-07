@@ -97,7 +97,7 @@ async def on_message(message):
         
 client.remove_command("help")
 
-@client.command(pass_context=True)
+@client.command()
 async def help(ctx, com=None):
     if not com:
         listcom = list(client.commands)
@@ -246,32 +246,32 @@ async def kick(ctx, member: discord.Member, reason=None):
 @client.command(description="Minion haha",aliases=["minion","bello"])
 async def minyin(ctx):
     info=redditGrab.imageScrape("MinionMemes")
-    await ctx.send(info[0]+"\n"+info[1])
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
 
 @client.command(description="Top Tier Sesame Street")
 async def bert(ctx):
     info=redditGrab.imageScrape("bertstrips")
-    await ctx.send(info[0]+"\n"+info[1])
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
 
 @client.command(description="MEEM", aliases=["mem","emem","meem"])
 async def meme(ctx):
     info=redditGrab.imageScrape("dankmemes")
-    await ctx.send(info[0]+"\n"+info[1])
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
 
 @client.command(description="Gets only the finest images on the web")
 async def blursed(ctx):
     info=redditGrab.imageScrape("blursedimages")
-    await ctx.send(info[0]+"\n"+info[1])
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
 
 @client.command(description="Gets a post off any sub\n .reddit <sub name>")
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
-    await ctx.send(info[0]+"\n"+info[1])
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
 
 @client.command(description="Gets posts from a user\n .redditor <username>")
 async def redditor(ctx, user):
     info=redditGrab.userImageScrape(user)
-    await ctx.send(info[0]+"\n"+info[1])
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
 
 @client.command(description="Fetches a users karma\n .karma <username>")
 async def karma(ctx, user):
