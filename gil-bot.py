@@ -93,6 +93,14 @@ async def on_message(message):
     if True==True:
         await client.process_commands(message)
 
+
+##@client.event
+##async def on_reaction_add(reaction,user):
+##    if str(user.id)!= "702143271144783904":
+##        channel = reaction.message.channel
+##        message1 = await channel.send("test")
+##        await message1.add_reaction("🅱")
+
 #####Commands
         
 client.remove_command("help")
@@ -101,9 +109,14 @@ client.remove_command("help")
 async def help(ctx, com=None):
     if not com:
         listcom = list(client.commands)
+        tempCom=[]
         commands = ''
         for command in listcom:
+            tempCom.append(f'{command}')
+        tempCom=sorted(tempCom,key=str.lower)
+        for command in tempCom:
             commands+=f'.{command}\n'
+        #commands=sorted(commands,key=str.lower)
         embed = make_embed(ctx,
             title='Commands',
             description=commands+''
@@ -114,8 +127,8 @@ async def help(ctx, com=None):
             comm = client.get_command(com)
             embed = make_embed(ctx,
                 title='.'+com,
-                description=comm.description,
-                footer=str(datetime.datetime.now()).split('.')[0]
+                description=(comm.description+f" \nAliases: {comm.aliases}"),
+                #footer=str(datetime.datetime.now()).split('.')[0]
             )
             await ctx.send(embed=embed)
         except:
@@ -243,35 +256,37 @@ async def kick(ctx, member: discord.Member, reason=None):
 ##async def bello(ctx):
 ##    await ctx.send(str(random.choice(lists.minion)))
 
+spacer="        "
+
 @client.command(description="Minion haha",aliases=["minion","bello"])
 async def minyin(ctx):
     info=redditGrab.imageScrape("MinionMemes")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Top Tier Sesame Street")
 async def bert(ctx):
     info=redditGrab.imageScrape("bertstrips")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="MEEM", aliases=["mem","emem","meem"])
 async def meme(ctx):
     info=redditGrab.imageScrape("dankmemes")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets only the finest images on the web")
 async def blursed(ctx):
     info=redditGrab.imageScrape("blursedimages")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets a post off any sub\n .reddit <sub name>")
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets posts from a user\n .redditor <username>")
 async def redditor(ctx, user):
     info=redditGrab.userImageScrape(user)
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1]))
+    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Fetches a users karma\n .karma <username>")
 async def karma(ctx, user):

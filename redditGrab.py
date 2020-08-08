@@ -14,12 +14,10 @@ def imageScrape(sub):
     for i in range(post_to_pick):
         submission = next(x for x in posts if not x.stickied)
         if (".jpg" in submission.url) or (".png" in submission.url) or (".gif" in submission.url):
-            temp[submission.url]=submission.title
+            temp[submission.url]=(submission.title,submission.subreddit)
     pickedUrl=random.choice(list(temp.keys()))
-    #print(pickedUrl)
-    pickedTitle=temp[pickedUrl]
-    #print(pickedTitle)
-    pickedInfo=(pickedTitle,pickedUrl)
+    pickedData=temp[pickedUrl]
+    pickedInfo=(pickedData[0],pickedUrl,pickedData[1])
     return pickedInfo
 
 def karmaScrape(user):
@@ -33,15 +31,9 @@ def userImageScrape(user):
     post_to_pick=random.randint(1, 75)
     count=post_to_pick
     for submission in reddit.redditor(user).submissions.top("all"):
-        if count==0:
-            print(submission.title)
-        count-=1
         if (".jpg" in submission.url) or (".png" in submission.url) or (".gif" in submission.url):
-            temp[submission.url]=submission.title
-
+            temp[submission.url]=(submission.title,submission.subreddit)
     pickedUrl=random.choice(list(temp.keys()))
-    #print(pickedUrl)
-    pickedTitle=temp[pickedUrl]
-    #print(pickedTitle)
-    pickedInfo=(pickedTitle,pickedUrl)
+    pickedData=temp[pickedUrl]
+    pickedInfo=(pickedData[0],pickedUrl,pickedData[1])
     return pickedInfo
