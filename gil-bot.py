@@ -112,6 +112,8 @@ async def help(ctx, com=None):
         tempCom=[]
         commands = ''
         for command in listcom:
+            if command.hidden==True:
+                continue
             tempCom.append(f'{command}')
         tempCom=sorted(tempCom,key=str.lower)
         for command in tempCom:
@@ -125,9 +127,12 @@ async def help(ctx, com=None):
     elif com != 'help':
         try:
             comm = client.get_command(com)
+            alia=f" \nAliases: {comm.aliases}"
+            if comm.aliases==[]:
+                alia=""
             embed = make_embed(ctx,
                 title='.'+com,
-                description=(comm.description+f" \nAliases: {comm.aliases}"),
+                description=(comm.description+alia),
                 #footer=str(datetime.datetime.now()).split('.')[0]
             )
             await ctx.send(embed=embed)
@@ -187,7 +192,7 @@ async def dm(ctx, member : discord.Member, num=10, *, words):
 async def clear(ctx, num=6):
     await ctx.channel.purge(limit=num+1)
 
-@client.command(description="Clears some messages")
+@client.command(description="Don't worry about it",hidden=True)
 async def void(ctx, num=6):
     if (str(ctx.author.id) in AdMo.admin):
         await ctx.channel.purge(limit=num+1)
@@ -237,7 +242,7 @@ async def sift(ctx, member : discord.Member, num=6):
     msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
     await msg.delete(delay=2.5)
 
-@client.command(description="Clears Member Messages\n .vsift <mention>")
+@client.command(description="Also don't worry about it\n .vsift <mention>",hidden=True)
 async def vsift(ctx, member : discord.Member, num=6):
     if str(ctx.author.id) in AdMo.admin:
         def is_them(m):
@@ -246,7 +251,7 @@ async def vsift(ctx, member : discord.Member, num=6):
         msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
         await msg.delete(delay=2.5)
 
-@client.command(description='Kick someone\n .kick <mention> <reason>')
+@client.command(description='Kick someone\n .kick <mention> <reason>',hidden=True)
 async def kick(ctx, member: discord.Member, reason=None):
     if (str(ctx.author.id) in AdMo.admin) and (str(member.id) not in AdMo.admin):
         await member.kick(reason=reason)

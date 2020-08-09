@@ -24,3 +24,10 @@ def send(subject, body, attachment=[]):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
+
+##def imageGrab(url):
+##    urllib.request.urlretrieve(url, "grabbed.png")
+##    with open("grabbed.png", 'rb') as fp:
+##        img_data = fp.read()
+##    alist.append(img_data)
+##    return img_data
