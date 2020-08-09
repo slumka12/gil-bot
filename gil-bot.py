@@ -223,7 +223,7 @@ async def send(ctx,link):
 async def wiki(ctx):
     link=func.wikiRand()
     title=func.wikiTitle(link)
-    await ctx.send(str(title)+"\n"+str(link))
+    await ctx.send(embed=make_embed(title=str(title)),description=str(link))
 
 @client.command(description="Clears Gil Bot Messages\n .clean <number>")
 async def clean(ctx, num=6):
