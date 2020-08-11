@@ -22,13 +22,13 @@ def imageScrape(sub):
 
 def karmaScrape(user):
     redditor=reddit.redditor(user)
-    return redditor.link_karma
+    return redditor.link_karma + redditor.comment_karma
 
 def userImageScrape(user):
     import random
     temp={}
     #posts=reddit.redditor(user).submissions.top("all")
-    post_to_pick=random.randint(1, 75)
+    #post_to_pick=random.randint(1, 75)
     #count=post_to_pick
     for submission in reddit.redditor(user).submissions.top("all"):
         if (".jpg" in submission.url) or (".png" in submission.url) or (".gif" in submission.url):
