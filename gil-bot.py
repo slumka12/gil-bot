@@ -295,8 +295,8 @@ async def blursed(ctx):
     else:
         await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
-@client.command(description="Gets some copypasta")
-async def copypasta(ctx, sub):
+@client.command(description="Gets some copypasta",aliases=["pasta"])
+async def copypasta(ctx):
     info=redditGrab.textScrape("copypasta")
     if info[3]==True and ctx.channel.is_nsfw()==False:
         await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
