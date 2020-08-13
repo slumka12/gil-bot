@@ -14,10 +14,10 @@ def imageScrape(sub):
     for i in range(post_to_pick):
         submission = next(x for x in posts if not x.stickied)
         if (".jpg" in submission.url) or (".png" in submission.url) or (".gif" in submission.url):
-            temp[submission.url]=(submission.title,submission.subreddit)
+            temp[submission.url]=(submission.title,submission.subreddit,submission.over_18)
     pickedUrl=random.choice(list(temp.keys()))
     pickedData=temp[pickedUrl]
-    pickedInfo=(pickedData[0],pickedUrl,pickedData[1])
+    pickedInfo=(pickedData[0],pickedUrl,pickedData[1],pickedData[2])
     return pickedInfo
 
 def karmaScrape(user):

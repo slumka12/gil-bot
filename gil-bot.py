@@ -266,32 +266,50 @@ spacer="        "
 @client.command(description="Minion haha",aliases=["minion","bello"])
 async def minyin(ctx):
     info=redditGrab.imageScrape("MinionMemes")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+    if info[2]=="nsfw" and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Top Tier Sesame Street")
 async def bert(ctx):
     info=redditGrab.imageScrape("bertstrips")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+    if info[2]=="nsfw" and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="MEEM", aliases=["mem","emem","meem"])
 async def meme(ctx):
     info=redditGrab.imageScrape("dankmemes")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+    if info[2]=="nsfw" and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets only the finest images on the web")
 async def blursed(ctx):
     info=redditGrab.imageScrape("blursedimages")
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+    if info[2]=="nsfw" and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets a post off any sub\n .reddit <sub name>")
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+    if info[2]=="nsfw" and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets posts from a user\n .redditor <username>")
 async def redditor(ctx, user):
     info=redditGrab.userImageScrape(user)
-    await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+    if info[2]=="nsfw" and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Fetches a users karma\n .karma <username>")
 async def karma(ctx, user):
