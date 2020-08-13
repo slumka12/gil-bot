@@ -152,7 +152,7 @@ async def mention(ctx, member : discord.Member):
     await ctx.send(f"{member.mention}")
 
 @client.command(description="Pings someone a bunch of times\n .spam <mention> <number> <content>")
-async def spam(ctx, member : discord.Member, num=10, *, words):
+async def spam(ctx, member : discord.Member, num=10, *, words="words"):
     left=num
     if (str(ctx.author.id) in AdMo.admin) and (str(member.id)!=me):
         for i in range(int(num)):
@@ -164,7 +164,7 @@ async def spam(ctx, member : discord.Member, num=10, *, words):
         pass
 
 @client.command(description="Repeats a message\n .rep <number> <content>")
-async def rep(ctx, num=10, *, words):
+async def rep(ctx, num=10, *, words="words"):
     left=num
     if (str(ctx.author.id) in AdMo.admin):
         for i in range(int(num)):
@@ -176,7 +176,7 @@ async def rep(ctx, num=10, *, words):
         pass
 
 @client.command(description="Dms someone a bunch of times\n .dm <mention> <number> <content>")
-async def dm(ctx, member : discord.Member, num=10, *, words):
+async def dm(ctx, member : discord.Member, num=10, *, words="words"):
     left=num
     if (str(ctx.author.id) in AdMo.admin) and (str(member.id)!=me):
         for i in range(int(num)):
@@ -279,7 +279,7 @@ async def bert(ctx):
     else:
         await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
-@client.command(description="MEEM", aliases=["mem","emem","meem"])
+@client.command(description="MEEM", aliases=["mem","emem","meem","memes"])
 async def meme(ctx):
     info=redditGrab.imageScrape("dankmemes")
     if info[3]==True and ctx.channel.is_nsfw()==False:
@@ -295,6 +295,14 @@ async def blursed(ctx):
     else:
         await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
+@client.command(description="Gets some copypasta")
+async def copypasta(ctx, sub):
+    info=redditGrab.textScrape("copypasta")
+    if info[3]==True and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],description=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+
 @client.command(description="Gets a post off any sub\n .reddit <sub name>")
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
@@ -302,6 +310,14 @@ async def reddit(ctx, sub):
         await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
     else:
         await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
+
+@client.command(description="Gets a Text-post off any sub\n .textpost <sub name>")
+async def textpost(ctx, sub):
+    info=redditGrab.textScrape(sub)
+    if info[3]==True and ctx.channel.is_nsfw()==False:
+        await ctx.send(embed=make_embed(ctx,title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))
+    else:
+        await ctx.send(embed=make_embed(ctx,title=info[0],description=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
 @client.command(description="Gets posts from a user\n .redditor <username>")
 async def redditor(ctx, user):
