@@ -10,8 +10,21 @@ import func
 import AdMo
 import botMail
 
-me="382987612736192512"
-botID="702143271144783904"
+me=382987612736192512
+botID=702143271144783904
+flics=264808033220165632
+
+def notBot(user):
+    if user!=702143271144783904:
+        return True
+    else:
+        return False
+
+def notMe(user):
+    if user!=382987612736192512:
+        return True
+    else:
+        return False   
 
 counted=["fuck","shit","pog","wm?"]
 
@@ -57,38 +70,38 @@ def make_embed(ctx, title=None, description=None, color=None, author=None, image
 @client.event
 async def on_message(message):
     #print(message.author)
-    if str(message.author) == 'Connor Bot#9505':
+    if message.author.id == 695109998715469825:
         return await message.channel.send("Hello fellow bot")
     if "turtle" in message.content.lower():
-        if str(message.author.id)!= "702143271144783904":
+        if notBot(message.author.id):
             await message.channel.send("We don't say that name in this house")
     if ("superhot" in message.content.lower())or("super hot" in message.content.lower()):
-        if str(message.author.id)!= "702143271144783904":
+        if notBot(message.author.id):
             for i in range(4):
                 await message.channel.send("SUPER")
                 time.sleep(.5)
                 await message.channel.send("HOT")
                 time.sleep(.75)
     if any(ele in (message.content.lower()) for ele in lists.swears):
-        if str(message.author.id)!= "702143271144783904":
+        if notBot(message.author.id):
             if random.randint(0,100)==69:
                 await message.channel.send("Woah there. Watch your language.")
     if any(word in message.content.lower() for word in counted):
-        if str(message.author.id)!="702143271144783904":
+        if notBot(message.author.id):
             for i in counted:
                 if i in message.content.lower():
                     num=func.phraseNum(message.content.lower(),i)
                     func.wordAdd(str(message.author.id),i,num)
     if "ilan" in message.content.lower():
-        if str(message.author.id)!= "702143271144783904":
-            await message.channel.send(str(("Guys remember that time "+random.choice(lists.ilan))))
+        if notBot(message.author.id):
+            await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
     if "delyeet" in message.content.lower():
-        if str(message.author.id)!= "702143271144783904":
+        if notBot(message.author.id):
             await message.delete()
-    if str(message.author.id)==("462885213215916034"):
+    if message.author.id==462885213215916034:
         await message.channel.send('Shut up Frog.')
         await message.delete()
-    if str(message.author.id) in AdMo.mocking:
+    if message.author.id in AdMo.mocking:
         await message.channel.send(func.sponge(message.content))
     if True==True:
         await client.process_commands(message)
@@ -151,41 +164,49 @@ async def beep(message):
 async def mention(ctx, member : discord.Member):
     await ctx.send(f"{member.mention}")
 
+@client.command(description="Pings flics for some good old wingman",hidden=True)
+async def wm(ctx,num=6):
+    if ctx.author.id==me:
+        flicsMen=client.get_user(flics)
+        for i in range(int(num)):
+            await ctx.send(f"{flicsMen.mention} wm?")
+
+
+
 @client.command(description="Pings someone a bunch of times\n .spam <mention> <number> <content>")
 async def spam(ctx, member : discord.Member, num=10, *, words="words"):
+    if member.id==me:
+        num=5
     left=num
-    if (str(ctx.author.id) in AdMo.admin) and (str(member.id)!=me):
+    #and notMe(member.id)
+    if (ctx.author.id in AdMo.admin):
         for i in range(int(num)):
-            await ctx.send(f"{member.mention}, "+str(words))
+            await ctx.send(f"{member.mention}, {words}")
             time.sleep(.5)
             left-=1
-            print("Sent: \""+str(words)+"\" to "+str(member)+" "+str(left)+" remaining")
-    else:
-        pass
+            print(f'Sent: "{words}" to {member}, {left} remaining')
 
 @client.command(description="Repeats a message\n .rep <number> <content>")
 async def rep(ctx, num=10, *, words="words"):
     left=num
-    if (str(ctx.author.id) in AdMo.admin):
+    if (ctx.author.id in AdMo.admin):
         for i in range(int(num)):
-            await ctx.send(str(words))
+            await ctx.send(words)
             time.sleep(.5)
             left-=1
-            print("Repeated:\""+str(words)+"\" "+str(left)+" remaining")
-    else:
-        pass
+            print(f'Repeated: "{words}", {left} remaining')
 
 @client.command(description="Dms someone a bunch of times\n .dm <mention> <number> <content>")
 async def dm(ctx, member : discord.Member, num=10, *, words="words"):
+    if member.id==me:
+        num=5
     left=num
-    if (str(ctx.author.id) in AdMo.admin) and (str(member.id)!=me):
+    if (ctx.author.id in AdMo.admin):
         for i in range(int(num)):
-            await member.send(f"{member.mention}, "+str(words))
+            await member.send(f"{member.mention}, {words}")
             time.sleep(.5)
             left-=1
-            print("Sent: \""+str(words)+"\" to "+str(member)+" "+str(left)+" remaining")
-    else:
-        pass
+            print(f'Sent: "{words}" to {member}, {left} remaining')
 
 @client.command(description="Clears some messages\n .clear <number>")
 @commands.has_permissions(manage_messages=True)
@@ -194,21 +215,21 @@ async def clear(ctx, num=6):
 
 @client.command(description="Don't worry about it",hidden=True)
 async def void(ctx, num=6):
-    if (str(ctx.author.id) in AdMo.admin):
+    if (ctx.author.id in AdMo.admin):
         await ctx.channel.purge(limit=num+1)
 
 @client.command(description="Adds/removes someone to admin list\n .admin <mention>")
 async def admin(ctx, member : discord.Member):
-    if str(ctx.author.id)==me:
-        func.adminMock(str(member.id),0)
+    if ctx.author.id==me:
+        func.adminMock(member.id,0)
 
 @client.command(description="Adds/removes someone to mock list\n .mock <mention>")
 async def mock(ctx, member : discord.Member):
-    func.adminMock(str(member.id),1)
+    func.adminMock(member.id,1)
 
 @client.command(description="Shows the AdMo list\n .admo <mention>")
 async def admo(ctx):
-    embed = make_embed(ctx, title='admo',description=("Admin: "+str(AdMo.admin)+"\nMocking: "+str(AdMo.mocking)))
+    embed = make_embed(ctx, title='admo',description=(f"Admin: {AdMo.admin}\nMocking: {AdMo.mocking}"))
     await ctx.send(embed=embed)
 
 @client.command(description="Send a picture to the bot's email\n .send <image link>")
@@ -244,7 +265,7 @@ async def sift(ctx, member : discord.Member, num=6):
 
 @client.command(description="Also don't worry about it\n .vsift <mention>",hidden=True)
 async def vsift(ctx, member : discord.Member, num=6):
-    if str(ctx.author.id) in AdMo.admin:
+    if ctx.author.id in AdMo.admin:
         def is_them(m):
             return m.author == member
         deleted = await ctx.channel.purge(limit=num, check=is_them)
@@ -253,7 +274,7 @@ async def vsift(ctx, member : discord.Member, num=6):
 
 @client.command(description='Kick someone\n .kick <mention> <reason>',hidden=True)
 async def kick(ctx, member: discord.Member, reason=None):
-    if (str(ctx.author.id) in AdMo.admin) and (str(member.id) not in AdMo.admin):
+    if (ctx.author.id in AdMo.admin) and (member.id not in AdMo.admin):
         await member.kick(reason=reason)
         await ctx.send(f'{member} kicked because: {reason}')
 
@@ -311,7 +332,7 @@ async def reddit(ctx, sub):
     else:
         await ctx.send(embed=make_embed(ctx,title=info[0],image=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
-@client.command(description="Gets a Text-post off any sub\n .textpost <sub name>")
+@client.command(description="Gets a Text-post off any sub\n .textpost <sub name>",aliases=["textP","text"])
 async def textpost(ctx, sub):
     info=redditGrab.textScrape(sub)
     if info[3]==True and ctx.channel.is_nsfw()==False:
@@ -339,7 +360,7 @@ async def fetch(ctx, member : discord.Member,word):
 
 @client.command(description="Shows the tracked words")
 async def tracked(ctx):
-    embed = make_embed(ctx, title='Tracked Words',description=(str(counted)))
+    embed = make_embed(ctx, title='Tracked Words',description=f"{counted}")
     await ctx.send(embed=embed)
 
 @client.command(description="Yes hahaha very funny meem\n .sponge <content>")
@@ -354,8 +375,8 @@ async def invite(ctx):
 
 @client.command(description="Die",aliases=["kill"])
 async def reload(ctx):
-    if str(ctx.author.id)==me:
-        await ctx.send(str(random.choice(lists.die)))
+    if ctx.author.id==me:
+        await ctx.send(f"{random.choice(lists.die)}")
         quit()
 
 
