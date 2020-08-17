@@ -84,7 +84,9 @@ playing=["With Yofi",
          "Dude, git lowkey sucks",
          "This is my partner, Sh'Dynasty",
          "Suck it soup",
-         "CSGO>R6S"]
+         "CSGO>R6S",
+         "In Technicolor",
+         "Hey Lois. UNGA BUNGA LOIS"]
 
 ##minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
 ##        "https://i.redd.it/l8lumq449cu21.png",
@@ -111,7 +113,8 @@ ilan=["Ilan liked Miriam?",
       "Ilan's mom thought he was gay?",
       "Ilan lost a fight to me before I started working out?",
       "Ilan thought I gave a fuck about his opinion?",
-      "Ilan tried to get me privacy striked?"]
+      "Ilan tried to get me privacy striked?",
+      "this website existed?\nhttps://www.henrybenamram.com"]
 
 swears=["fuck",
         "shit",

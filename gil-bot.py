@@ -10,24 +10,6 @@ import func
 import AdMo
 import botMail
 
-me=382987612736192512
-botID=702143271144783904
-flics=264808033220165632
-
-def notBot(user):
-    if user!=702143271144783904:
-        return True
-    else:
-        return False
-
-def notMe(user):
-    if user!=382987612736192512:
-        return True
-    else:
-        return False   
-
-counted=["fuck","shit","pog","wm?"]
-
 client = commands.Bot(command_prefix='.')
 
 @client.event
@@ -49,7 +31,7 @@ async def stat():
 ##    except:
 ##        print('Couldn\'t change pfp')
     
-#####Stuff
+#####Stuff#####
     
 def make_embed(ctx, title=None, description=None, color=None, author=None, image=None, link=None, footer=None):
     if not color: color = random.randint(0, 0xffffff)
@@ -65,7 +47,25 @@ def make_embed(ctx, title=None, description=None, color=None, author=None, image
     else: embed.set_footer(text=str(datetime.datetime.now()).split('.')[0])
     return embed
 
-#####Events
+me=382987612736192512
+botID=702143271144783904
+flics=264808033220165632
+
+def notBot(user):
+    if user!=702143271144783904:
+        return True
+    else:
+        return False
+
+def notMe(user):
+    if user!=382987612736192512:
+        return True
+    else:
+        return False   
+
+counted=["fuck","shit","pog","wm?"]
+
+#####Events#####
 
 @client.event
 async def on_message(message):
@@ -94,7 +94,8 @@ async def on_message(message):
                     func.wordAdd(str(message.author.id),i,num)
     if "ilan" in message.content.lower():
         if notBot(message.author.id):
-            await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
+            if random.randint(1,100)==69:
+                await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
     if "delyeet" in message.content.lower():
         if notBot(message.author.id):
             await message.delete()
@@ -115,7 +116,7 @@ async def on_message(message):
 ##        message1 = await channel.send("test")
 ##        await message1.add_reaction("🅱")
 
-#####Commands
+#####Commands#####
         
 client.remove_command("help")
 
