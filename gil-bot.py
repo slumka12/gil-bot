@@ -399,5 +399,5 @@ async def reload(ctx):
 ##        await ctx.send(str(random.choice(lists.die)))
 ##        quit()
 
-
-client.run(f'{tget()}')
+t=tget()
+client.run(t)
