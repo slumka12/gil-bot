@@ -99,8 +99,9 @@ async def on_message(message):
         if notBot(message.author.id):
             await message.delete()
     if message.author.id==462885213215916034:
-        await message.channel.send('Shut up Frog.')
-        await message.delete()
+        if random.randint(1,100)==69:
+            await message.channel.send('Shut up Frog.')
+        #await message.delete()
     if message.author.id in AdMo.mocking:
         await message.channel.send(func.sponge(message.content))
     if True==True:
@@ -207,6 +208,13 @@ async def dm(ctx, member : discord.Member, num=10, *, words="words"):
             time.sleep(.5)
             left-=1
             print(f'Sent: "{words}" to {member}, {left} remaining')
+
+@client.command(description="Resets status loop",hidden=True)
+async def status(ctx):
+    if ctx.author.id==me:
+        stat.cancel()
+        stat.start()
+
 
 @client.command(description="Clears some messages\n .clear <number>")
 @commands.has_permissions(manage_messages=True)
