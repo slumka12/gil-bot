@@ -99,7 +99,7 @@ async def on_message(message):
         if notBot(message.author.id):
             await message.delete()
     if message.author.id==462885213215916034:
-        if random.randint(1,100)==69:
+        if random.randint(1,1000)==420:
             await message.channel.send('Shut up Frog.')
         #await message.delete()
     if message.author.id in AdMo.mocking:
@@ -332,7 +332,7 @@ async def copypasta(ctx):
     else:
         await ctx.send(embed=make_embed(ctx,title=info[0],description=info[1],footer=f"Posted on r/{info[2]}{spacer}"+str(datetime.datetime.now()).split('.')[0]))
 
-@client.command(description="Gets a post off any sub\n .reddit <sub name>")
+@client.command(description="Gets a post off any sub\n .reddit <sub name>",aliases=["r","re"])
 async def reddit(ctx, sub):
     info=redditGrab.imageScrape(sub)
     if info[3]==True and ctx.channel.is_nsfw()==False:
