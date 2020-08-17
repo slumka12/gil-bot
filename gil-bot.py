@@ -32,7 +32,11 @@ async def stat():
 ##        print('Couldn\'t change pfp')
     
 #####Stuff#####
-    
+
+def tget():
+    f=open("t.txt","r")
+    return f.readline()
+
 def make_embed(ctx, title=None, description=None, color=None, author=None, image=None, link=None, footer=None):
     if not color: color = random.randint(0, 0xffffff)
     embed = discord.Embed(
@@ -396,4 +400,4 @@ async def reload(ctx):
 ##        quit()
 
 
-client.run('NzAyMTQzMjcxMTQ0NzgzOTA0.Xp7v4Q.p-XDpxrKKsz7YL6Ry7gQdKO0IAg')
+client.run(f'{tget()}')
