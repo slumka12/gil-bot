@@ -263,6 +263,7 @@ async def wiki(ctx):
 async def clean(ctx, num=6):
     def is_me(m):
         return m.author == client.user
+    await ctx.message.delete()
     deleted = await ctx.channel.purge(limit=num, check=is_me)
     msg = await ctx.channel.send('Deleted {} message(s)'.format(len(deleted)))
     await msg.delete(delay=2.5)
