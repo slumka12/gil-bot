@@ -73,44 +73,45 @@ counted=["fuck","shit","pog","wm?"]
 
 @client.event
 async def on_message(message):
-    #print(message.author)
-    if message.author.id == 695109998715469825:
-        return await message.channel.send("Hello fellow bot")
-    if "turtle" in message.content.lower():
-        if notBot(message.author.id):
-            await message.channel.send("We don't say that name in this house")
-    if ("superhot" in message.content.lower())or("super hot" in message.content.lower()):
-        if notBot(message.author.id):
-            for i in range(4):
-                await message.channel.send("SUPER")
-                time.sleep(.5)
-                await message.channel.send("HOT")
-                time.sleep(.75)
-    if any(ele in (message.content.lower()) for ele in lists.swears):
-        if notBot(message.author.id):
-            if random.randint(0,100)==69:
-                await message.channel.send("Woah there. Watch your language.")
-    if any(word in message.content.lower() for word in counted):
-        if notBot(message.author.id):
-            for i in counted:
-                if i in message.content.lower():
-                    num=func.phraseNum(message.content.lower(),i)
-                    func.wordAdd(str(message.author.id),i,num)
-    if "ilan" in message.content.lower():
-        if notBot(message.author.id):
-            if random.randint(1,100)==69:
-                await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
-    if "delyeet" in message.content.lower():
-        if notBot(message.author.id):
-            await message.delete()
-    if message.author.id==462885213215916034:
-        if random.randint(1,1000)==420:
-            await message.channel.send('Shut up Frog.')
-        #await message.delete()
-    if message.author.id in AdMo.mocking:
-        await message.channel.send(func.sponge(message.content))
-    if True==True:
-        await client.process_commands(message)
+    if notBot(message.author.id):
+        #print(message.author)
+        if message.author.id == 695109998715469825:
+            return await message.channel.send("Hello fellow bot")
+        if "turtle" in message.content.lower():
+            #if notBot(message.author.id):
+                await message.channel.send("We don't say that name in this house")
+        if ("superhot" in message.content.lower())or("super hot" in message.content.lower()):
+            #if notBot(message.author.id):
+                for i in range(4):
+                    await message.channel.send("SUPER")
+                    time.sleep(.5)
+                    await message.channel.send("HOT")
+                    time.sleep(.75)
+        if any(ele in (message.content.lower()) for ele in lists.swears):
+            #if notBot(message.author.id):
+                if random.randint(0,100)==69:
+                    await message.channel.send("Woah there. Watch your language.")
+        if any(word in message.content.lower() for word in counted):
+            #if notBot(message.author.id):
+                for i in counted:
+                    if i in message.content.lower():
+                        num=func.phraseNum(message.content.lower(),i)
+                        func.wordAdd(str(message.author.id),i,num)
+        if "ilan" in message.content.lower():
+            #if notBot(message.author.id):
+                if random.randint(1,100)==69:
+                    await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
+        if "delyeet" in message.content.lower():
+            #if notBot(message.author.id):
+                await message.delete()
+        if message.author.id==462885213215916034:
+            if random.randint(1,1000)==420:
+                await message.channel.send('Shut up Frog.')
+            #await message.delete()
+        if message.author.id in AdMo.mocking:
+            await message.channel.send(func.sponge(message.content))
+        if True==True:
+            await client.process_commands(message)
 
 
 ##@client.event
@@ -176,8 +177,7 @@ async def wm(ctx,num=6):
         flicsMen=client.get_user(flics)
         for i in range(int(num)):
             await ctx.send(f"{flicsMen.mention} wm?")
-
-
+            time.sleep(.5)
 
 @client.command(description="Pings someone a bunch of times\n .spam <mention> <number> <content>")
 async def spam(ctx, member : discord.Member, num=10, *, words="words"):
