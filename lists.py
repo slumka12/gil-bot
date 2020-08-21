@@ -88,7 +88,9 @@ playing=["With Yofi",
          "In Technicolor",
          "Hey Lois. UNGA BUNGA LOIS",
          "Sub to SomeOrdinary Gamers",
-         "@jewfacebaby wm?"]
+         "@jewfacebaby wm?",
+         "¿¿¿uʍop ʇǝƃ I op ʍoɥ 'ʇᴉɥs ʇᴉɐʍ",
+         "uᴉɐƃɐ ʇou ʇᴉɥs ɥO"]
 
 ##minion=["https://i.ytimg.com/vi/JNmeVsBp8X4/maxresdefault.jpg",
 ##        "https://i.redd.it/l8lumq449cu21.png",

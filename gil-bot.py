@@ -173,10 +173,14 @@ async def mention(ctx, member : discord.Member):
 
 @client.command(description="Pings flics for some good old wingman",hidden=True)
 async def wm(ctx,num=6):
-    if ctx.author.id==me:
-        flicsMen=client.get_user(flics)
+    if ctx.author.id==me or ctx.author.id==flics:
+        if ctx.author.id==me:
+            other=flics
+        elif ctx.author.id==flics:
+            other=me
+        Men=client.get_user(other)
         for i in range(int(num)):
-            await ctx.send(f"{flicsMen.mention} wm?")
+            await ctx.send(f"{Men.mention} wm?")
             time.sleep(.5)
 
 @client.command(description="Pings someone a bunch of times\n .spam <mention> <number> <content>")
@@ -219,7 +223,6 @@ async def status(ctx):
     if ctx.author.id==me:
         stat.cancel()
         stat.start()
-
 
 @client.command(description="Clears some messages\n .clear <number>")
 @commands.has_permissions(manage_messages=True)
