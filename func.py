@@ -24,16 +24,25 @@ def adminMock(userId, mode):
     import AdMo
     listA=AdMo.admin
     listM=AdMo.mocking
-    if (userId in listA) and (mode==0):
-        listA.remove(userId)
-    elif (userId not in listA) and (mode==0):
-        listA.append(userId)
-    elif (userId in listM) and (mode==1):
-        listM.remove(userId)
-    elif (userId not in listM) and (mode==1):
-        listM.append(userId)
+    listS=AdMo.silence
+    if mode==0:
+        if userId in listA:
+            listA.remove(userId)
+        elif userId not in listA:
+            listA.append(userId)
+    elif mode==1:
+        if userId in listM:
+            listM.remove(userId)
+        elif userId not in listM:
+            listM.append(userId)
+    elif mode==2:
+        if userId in listS:
+            listS.remove(userId)
+        elif userId not in listS:
+            listS.append(userId)
+    
     file=open("AdMo.py","w")
-    file.write("admin="+str(listA)+"\nmocking="+str(listM))
+    file.write("admin="+str(listA)+"\nmocking="+str(listM)+"\nsilence="+str(listS))
     file.close()
 
 def sponge(words):

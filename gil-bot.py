@@ -73,45 +73,48 @@ counted=["fuck","shit","pog","wm?"]
 
 @client.event
 async def on_message(message):
+    #print(message.author)
     if notBot(message.author.id):
-        #print(message.author)
-        if message.author.id == 695109998715469825:
-            return await message.channel.send("Hello fellow bot")
-        if "turtle" in message.content.lower():
-            #if notBot(message.author.id):
-                await message.channel.send("We don't say that name in this house")
-        if ("superhot" in message.content.lower())or("super hot" in message.content.lower()):
-            #if notBot(message.author.id):
-                for i in range(4):
-                    await message.channel.send("SUPER")
-                    time.sleep(.5)
-                    await message.channel.send("HOT")
-                    time.sleep(.75)
-        if any(ele in (message.content.lower()) for ele in lists.swears):
-            #if notBot(message.author.id):
-                if random.randint(0,100)==69:
-                    await message.channel.send("Woah there. Watch your language.")
-        if any(word in message.content.lower() for word in counted):
-            #if notBot(message.author.id):
-                for i in counted:
-                    if i in message.content.lower():
-                        num=func.phraseNum(message.content.lower(),i)
-                        func.wordAdd(str(message.author.id),i,num)
-        if "ilan" in message.content.lower():
-            #if notBot(message.author.id):
-                if random.randint(1,100)==69:
-                    await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
-        if "delyeet" in message.content.lower():
-            #if notBot(message.author.id):
-                await message.delete()
-        if message.author.id==462885213215916034:
-            if random.randint(1,1000)==420:
-                await message.channel.send('Shut up Frog.')
-            #await message.delete()
-        if message.author.id in AdMo.mocking:
-            await message.channel.send(func.sponge(message.content))
-        if True==True:
-            await client.process_commands(message)
+        if message.author.id in AdMo.silence:
+            await message.delete()
+        else:
+            if message.author.id == 695109998715469825:
+                return await message.channel.send("Hello fellow bot")
+            if "turtle" in message.content.lower():
+                #if notBot(message.author.id):
+                    await message.channel.send("We don't say that name in this house")
+            if ("superhot" in message.content.lower())or("super hot" in message.content.lower()):
+                #if notBot(message.author.id):
+                    for i in range(4):
+                        await message.channel.send("SUPER")
+                        time.sleep(.5)
+                        await message.channel.send("HOT")
+                        time.sleep(.75)
+            if any(ele in (message.content.lower()) for ele in lists.swears):
+                #if notBot(message.author.id):
+                    if random.randint(0,100)==69:
+                        await message.channel.send("Woah there. Watch your language.")
+            if any(word in message.content.lower() for word in counted):
+                #if notBot(message.author.id):
+                    for i in counted:
+                        if i in message.content.lower():
+                            num=func.phraseNum(message.content.lower(),i)
+                            func.wordAdd(str(message.author.id),i,num)
+            if "ilan" in message.content.lower():
+                #if notBot(message.author.id):
+                    if random.randint(1,100)==69:
+                        await message.channel.send(f"Guys remember that time {random.choice(lists.ilan)}")
+            if "delyeet" in message.content.lower():
+                #if notBot(message.author.id):
+                    await message.delete()
+            if message.author.id==462885213215916034:
+                if random.randint(1,1000)==420:
+                    await message.channel.send('Shut up Frog.')
+                #await message.delete()
+            if message.author.id in AdMo.mocking:
+                await message.channel.send(func.sponge(message.content))
+            if True==True:
+                await client.process_commands(message)
 
 
 ##@client.event
@@ -171,7 +174,7 @@ async def beep(message):
 async def mention(ctx, member : discord.Member):
     await ctx.send(f"{member.mention}")
 
-@client.command(description="Pings flics for some good old wingman",hidden=True)
+@client.command(description="Reunites the Mag-7 Appreciation Club",hidden=True)
 async def wm(ctx,num=6):
     if ctx.author.id==me or ctx.author.id==flics:
         if ctx.author.id==me:
@@ -243,9 +246,14 @@ async def admin(ctx, member : discord.Member):
 async def mock(ctx, member : discord.Member):
     func.adminMock(member.id,1)
 
+@client.command(description="Adds/removes someone to silence list\n .silence <mention>")
+async def silence(ctx, member : discord.Member):
+    if ctx.author.id==me:
+        func.adminMock(member.id,2)
+
 @client.command(description="Shows the AdMo list\n .admo <mention>")
 async def admo(ctx):
-    embed = make_embed(ctx, title='admo',description=(f"Admin: {AdMo.admin}\nMocking: {AdMo.mocking}"))
+    embed = make_embed(ctx, title='admo',description=(f"Admin: {AdMo.admin}\nMocking: {AdMo.mocking}\nSilenced: {AdMo.silence}"))
     await ctx.send(embed=embed)
 
 @client.command(description="Send a picture to the bot's email\n .send <image link>")
