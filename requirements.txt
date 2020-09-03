@@ -2,4 +2,3 @@ discord.py
 bs4
 praw
 requests
-wikipedia

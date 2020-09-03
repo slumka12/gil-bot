@@ -67,6 +67,13 @@ def notMe(user):
     else:
         return False   
 
+
+def listToString(s):    
+    str1 = ""  
+    for ele in s:  
+        str1 += ele   
+    return str1  
+
 counted=["fuck","shit","pog","wm?"]
 
 #####Events#####
@@ -226,6 +233,21 @@ async def status(ctx):
     if ctx.author.id==me:
         stat.cancel()
         stat.start()
+
+@client.command(description="Checks joined servers",hidden=True)
+async def guilds(ctx,idk=""):
+    if ctx.author.id==me:
+        gList=[]
+        async for guild in client.fetch_guilds(limit=150):
+            if guild.id==int(idk):
+                await guild.leave()
+                gList.append(f"I left {guild.name} (id {guild.id})")
+            else:
+                gList.append(f"{guild.name}: {guild.id}\n")
+        
+        sub=f"Your guild list, {ctx.author}"
+        body=listToString(gList)
+        botMail.send(sub,body)
 
 @client.command(description="Clears some messages\n .clear <number>")
 @commands.has_permissions(manage_messages=True)

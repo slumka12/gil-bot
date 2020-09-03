@@ -9,18 +9,19 @@ EMAIL_PASSWORD = 'qppcxazktetownat'
 
 contacts = [bot]
 
-def send(subject, body, attachment=[]):
+def send(subject, body, attachment=None):
     msg = EmailMessage()
     msg['Subject'] = subject
     msg['From'] = EMAIL_ADDRESS
     msg['To'] = contacts
     msg.set_content(body)
-    for i in attachment:
-        urllib.request.urlretrieve(i, "sample.png")
-        with open("sample.png", 'rb') as fp:
-            img_data = fp.read()
-        msg.add_attachment(img_data, maintype='image',
-                           subtype=imghdr.what(None, img_data))   
+    if attachment!=None:
+        for i in attachment:
+            urllib.request.urlretrieve(i, "sample.png")
+            with open("sample.png", 'rb') as fp:
+                img_data = fp.read()
+            msg.add_attachment(img_data, maintype='image',
+                            subtype=imghdr.what(None, img_data))   
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
