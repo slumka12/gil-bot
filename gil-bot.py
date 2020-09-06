@@ -235,7 +235,7 @@ async def status(ctx):
         stat.start()
 
 @client.command(description="Checks joined servers",hidden=True)
-async def guilds(ctx,idk=""):
+async def guilds(ctx,idk="0"):
     if ctx.author.id==me:
         gList=[]
         async for guild in client.fetch_guilds(limit=150):
