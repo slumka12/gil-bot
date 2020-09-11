@@ -250,7 +250,8 @@ async def guilds(ctx,idk="0"):
         sub=f"Your guild list, {ctx.author}"
         body=listToString(gList)
         botMail.send(sub,body)
-        await ctx.send("Sent!")
+        msg = await ctx.send("Sent!")
+        await msg.delete(delay=2.5)
 
 @client.command(description="Clears some messages\n .clear <number>")
 @commands.has_permissions(manage_messages=True)
@@ -269,10 +270,11 @@ async def post(ctx, num=20):
         async for message in ctx.channel.history(limit=num):
             mList.insert(0,f"{message.author}: {message.content}\n")
         
-        sub=f"Posterity request, {ctx.author}"
+        sub=f"Posterity request from {ctx.channel} on {ctx.guild}"
         body=listToString(mList)
         botMail.send(sub,body)
-        await ctx.send("Sent!")
+        msg = await ctx.send("Sent!")
+        await msg.delete(delay=2.5)
         #await ctx.channel.purge(limit=num+1)
 
 @client.command(description="Adds/removes someone to admin list\n .admin <mention>")
@@ -300,7 +302,8 @@ async def send(ctx,link):
     body="This picture was sent through your bot"
     attach=[link]
     botMail.send(sub,body,attach)
-    await ctx.send("Image sent!")
+    msg = await ctx.send("Image sent!")
+    await msg.delete(delay=2.5)
 
 @client.command(description="Grabs a random Wikipedia Article")
 async def wiki(ctx):
@@ -444,7 +447,8 @@ async def invite(ctx):
 @client.command(description="Die",aliases=["kill"])
 async def reload(ctx):
     if ctx.author.id==me:
-        await ctx.send(f"{random.choice(lists.die)}")
+        msg = await ctx.send(f"{random.choice(lists.die)}")
+        await msg.delete(delay=2.5)
         quit()
 
 
