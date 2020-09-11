@@ -1,11 +1,13 @@
 import discord
 from discord.ext import commands,tasks
 import random
-import redditGrab
+import pyfiglet
 import time
 import datetime
-##import sys
+#import sys
+### My Modules ###
 import lists
+import redditGrab
 import func
 import AdMo
 import botMail
@@ -248,6 +250,7 @@ async def guilds(ctx,idk="0"):
         sub=f"Your guild list, {ctx.author}"
         body=listToString(gList)
         botMail.send(sub,body)
+        await ctx.send("Sent!")
 
 @client.command(description="Clears some messages\n .clear <number>")
 @commands.has_permissions(manage_messages=True)
@@ -258,6 +261,19 @@ async def clear(ctx, num=6):
 async def void(ctx, num=6):
     if (ctx.author.id in AdMo.admin):
         await ctx.channel.purge(limit=num+1)
+
+@client.command(description="Saves messages for posterity\n .post <number>",hidden=True)
+async def post(ctx, num=20):
+    if ctx.author.id==me:
+        mList=[]
+        async for message in ctx.channel.history(limit=num):
+            mList.insert(0,f"{message.author}: {message.content}\n")
+        
+        sub=f"Posterity request, {ctx.author}"
+        body=listToString(mList)
+        botMail.send(sub,body)
+        await ctx.send("Sent!")
+        #await ctx.channel.purge(limit=num+1)
 
 @client.command(description="Adds/removes someone to admin list\n .admin <mention>")
 async def admin(ctx, member : discord.Member):
@@ -273,7 +289,7 @@ async def silence(ctx, member : discord.Member):
     if ctx.author.id==me:
         func.adminMock(member.id,2)
 
-@client.command(description="Shows the AdMo list\n .admo <mention>")
+@client.command(description="Shows the AdMo list",hidden=True)
 async def admo(ctx):
     embed = make_embed(ctx, title='admo',description=(f"Admin: {AdMo.admin}\nMocking: {AdMo.mocking}\nSilenced: {AdMo.silence}"))
     await ctx.send(embed=embed)
@@ -413,6 +429,11 @@ async def tracked(ctx):
 @client.command(description="Yes hahaha very funny meem\n .sponge <content>")
 async def sponge(ctx, *, words):
   await ctx.send(func.sponge(words))
+
+@client.command(description="Writes a message in ASCII\n .ascii <words>")
+async def ascii(ctx, *, text="Put in words next time"):
+    ascii_banner = pyfiglet.figlet_format(text)
+    await ctx.send("```"+ascii_banner+"```")
 
 @client.command(description="Send the invite link")
 async def invite(ctx):

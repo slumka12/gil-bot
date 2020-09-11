@@ -1,6 +1,6 @@
 #Lists associated with the bot
 
-playing=["With Yofi",
+playing=["With Fire",
          "Skyrim",
          "Bioshock",
          "Not Fortnite bc fuck that shit",
