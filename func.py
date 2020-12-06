@@ -1,49 +1,121 @@
 #All the functions for the bot
+import datetime
+import imghdr
+import json
+import random
+import smtplib
+import urllib.request
+from email.message import EmailMessage
 
+import discord
+from discord.ext import commands, tasks
+
+bot='gildiscordbot@gmail.com'
+EMAIL_PASSWORD = 'qppcxazktetownat'
+#Imports: imghdr, smtplib, urllib.request, from email.message import EmailMessage
+def mailSend(subject, body, fromAddress=bot, toAddress=bot, attachment=None):
+    msg = EmailMessage()
+    msg['Subject'] = subject
+    msg['From'] = fromAddress
+    msg['To'] = toAddress
+    msg.set_content(body)
+    if attachment!=None:
+        for i in attachment:
+            urllib.request.urlretrieve(i, "sample.png")
+            with open("sample.png", 'rb') as fp:
+                img_data = fp.read()
+            msg.add_attachment(img_data, maintype='image',
+                            subtype=imghdr.what(None, img_data))   
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(fromAddress, EMAIL_PASSWORD)
+        smtp.send_message(msg)
+
+def tget():
+    with open("t.txt","r") as f:
+        return f.readline()
+
+def jsGet(fName):
+    with open (f"{fName}.json","r") as j:
+        return json.load(j)
+
+# def make_embed(title=None, description=None, color=None, author=None, image=None, link=None, footer=None):
+#     if not color: color = random.randint(0, 0xffffff)
+#     embed = discord.Embed(
+#         title=title,
+#         url=link,
+#         description=description,
+#         color=color
+#     )
+#     if author: embed.set_author(name=author)
+#     if image: embed.set_image(url=image)
+#     if footer: embed.set_footer(text=footer)
+#     else: embed.set_footer(text=str(datetime.datetime.now()).split('.')[0])
+#     return embed
+
+def make_embed(title=None, description=None, color=None, author=None,
+               image=None, link=None, footer=None, fields=None):
+    if not color: color = random.randint(0, 0xffffff)
+    embed = discord.Embed(
+        title=title,
+        url=link,
+        description=description,
+        color=color
+    )
+    if author: embed.set_author(name=author)
+    if image: embed.set_image(url=image)
+    if footer: embed.set_footer(text=footer)
+    else: embed.set_footer(text=str(datetime.datetime.now()).split('.')[0])
+    if fields: 
+        for i in fields: embed.add_field(name = i, value=fields[i])
+    return embed
+
+
+def listToString(l:list, separator : str = "", endSep=None):
+    s=""
+    for i in l:
+        if (l.index(i)==len(l)-2 and endSep!=None): separator = endSep
+        #print(separator)
+        s+=f"{i}{separator}"
+    if separator != "": return s[:-len(separator)]
+    else: return s
+
+def stringToList(string : str, separator : str = " "):
+    return [i for i in list(string.split(separator)) if i]
+
+def removeChar(string, removes = []):
+    for i in removes:
+        string = string.replace(i, "")
+    return string
+
+def userGrab(client, users=[]):
+    return [client.get_user(int(i)) for i in users]
+
+def memlistToString(client, l:list, separator : str = ""):
+    s = []
+    for i in l:
+        user = client.get_user(i)
+        s.append(user.mention)
+    return listToString(s,separator=separator)
 
 def make_soup(url,feat="html"):
     import requests
     from bs4 import BeautifulSoup 
     data=requests.get(url).text
-    soup=BeautifulSoup(data, features=feat)
-    return soup
+    return BeautifulSoup(data, features=feat)
+
+def bible(link="https://dailyverses.net/random-bible-verse"):
+    soup=make_soup(link, feat="html.parser")
+    return (soup.find("a",attrs={"class":"vc"}).text,soup.find("span").text)
 
 def wikiRand():
     soup=make_soup("https://en.wikipedia.org/wiki/Special:Random",feat="html.parser")
     li=soup.find("li", attrs={"id":"ca-view"})
-    l=li.find("a").attrs["href"]
-    return "https://en.wikipedia.org/"+l
+    return f"https://en.wikipedia.org{li.find('a').attrs['href']}"
 
 def wikiTitle(link):
     soup=make_soup(link,feat="html.parser")
     h1=soup.find("h1")
-    h=h1.text
-    return h
-
-def adminMock(userId, mode):
-    import AdMo
-    listA=AdMo.admin
-    listM=AdMo.mocking
-    listS=AdMo.silence
-    if mode==0:
-        if userId in listA:
-            listA.remove(userId)
-        elif userId not in listA:
-            listA.append(userId)
-    elif mode==1:
-        if userId in listM:
-            listM.remove(userId)
-        elif userId not in listM:
-            listM.append(userId)
-    elif mode==2:
-        if userId in listS:
-            listS.remove(userId)
-        elif userId not in listS:
-            listS.append(userId)
-    
-    file=open("AdMo.py","w")
-    file.write("admin="+str(listA)+"\nmocking="+str(listM)+"\nsilence="+str(listS))
-    file.close()
+    return h1.text
 
 def sponge(words):
     words=str(words)
@@ -59,90 +131,4 @@ def sponge(words):
         final=final+i
     return final
 
-def phraseNum(whole,part):
-    if "`" not in whole:
-        repChar="`"
-    elif "~" not in whole:
-        repChar="~"
-    elif "|" not in whole:
-        repChar="|"
-    rep=whole.replace(part,repChar)
-    count=0
-    for i in rep:
-        if i==repChar:
-           count+=1
-    return count
-
-def wordAdd(memID,word,num):
-    import json
-    dumb=False
-    file=open("wordCount.json","r")
-    count=json.load(file)
-    file.close()
-    if memID not in count:
-        temp=count["blank"]
-        #print(temp)
-        count.update({memID:temp})
-        dumb=True
-    elif memID in count:
-        mem=count[memID]
-        mem[word]+=num
-
-    file=open("wordCount.json","w")
-    json.dump(count,file)
-    file.close()
-    if dumb==True:
-        interMed(memID, word, num)
-
-def interMed(memID, word, num):
-    wordAdd(memID, word, num)
-
-def wordGrab(memID,word):
-    import json
-    file=open("wordCount.json","r")
-    count=json.load(file)
-    file.close()
-    #print(count)
-    if memID in count:
-        mem=count[memID]
-        return mem[word]
-    if memID not in count:
-        return "no"   
-
-
-
-def keyAdd(key):
-    import json
-    file=open("wordCount.json","r")
-    count=json.load(file)
-    file.close()
-    for i in count:
-        mem=count[i]
-        temp={key:0}
-        mem.update(temp)
-        print(mem)
-    file=open("wordCount.json","w")
-    json.dump(count,file)
-    file.close()
-
-
-
-##def fuckAdd(memID,num):
-##    import ftime
-##    fdic=ftime.dic
-##    if memID in fdic:
-##        fdic[memID]+=num
-##    if memID not in fdic:
-##        temp={memID:1}
-##        fdic.update(temp)
-##    file=open("ftime.py","w")
-##    file.write("dic="+str(fdic))
-##    file.close()
-##def fuckGrab(memID):
-##    import ftime
-##    fdic=ftime.dic
-##    if memID in fdic:
-##        return fdic[memID]
-##    if memID not in fdic:
-##        return "no"
 
