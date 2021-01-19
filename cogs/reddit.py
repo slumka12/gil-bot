@@ -39,7 +39,7 @@ class Reddit(commands.Cog):
 
     def userImageScrape(self,user):
         posts=self.rSess.redditor(user).submissions.top(limit=25)
-        picked = random.randint(1,75)
+        picked = random.randint(0,25)
         submissions = (x for x in posts if (not x.stickied) and ((".jpg" in x.url) or (".png" in x.url) or (".gif" in x.url)))
         for submission in submissions:
             if picked == 0:
@@ -70,7 +70,7 @@ class Reddit(commands.Cog):
         while (not info) and c>5:
             info=self.userImageScrape(user)
             c-=1
-        if not info: await self.redditError(ctx,sub)
+        if not info: await self.redditError(ctx,user)
         else:
             if info[3]==True and ctx.channel.is_nsfw()==False:
                 await ctx.send(embed=make_embed(title="Sorry, I can't send this post to a non-NSFW channel",footer="Try using the command again or make the channel NSFW"))

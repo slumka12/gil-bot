@@ -107,15 +107,15 @@ def bible(link="https://dailyverses.net/random-bible-verse"):
     soup=make_soup(link, feat="html.parser")
     return (soup.find("a",attrs={"class":"vc"}).text,soup.find("span").text)
 
-def wikiRand():
-    soup=make_soup("https://en.wikipedia.org/wiki/Special:Random",feat="html.parser")
-    li=soup.find("li", attrs={"id":"ca-view"})
-    return f"https://en.wikipedia.org{li.find('a').attrs['href']}"
+# def wikiRand():
+#     soup=make_soup("https://en.wikipedia.org/wiki/Special:Random",feat="html.parser")
+#     li=soup.find("li", attrs={"id":"ca-view"})
+#     return f"https://en.wikipedia.org{li.find('a').attrs['href']}"
 
-def wikiTitle(link):
-    soup=make_soup(link,feat="html.parser")
-    h1=soup.find("h1")
-    return h1.text
+# def wikiTitle(link):
+#     soup=make_soup(link,feat="html.parser")
+#     h1=soup.find("h1")
+#     return h1.text
 
 def sponge(words):
     words=str(words)
