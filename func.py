@@ -54,7 +54,7 @@ def jsGet(fName):
 
 def make_embed(title=None, description=None, color=None, author=None,
                image=None, link=None, footer=None, fields=None):
-    if not color: color = random.randint(0, 0xffffff)
+    if not color: color = discord.Color.random()
     embed = discord.Embed(
         title=title,
         url=link,
@@ -65,8 +65,9 @@ def make_embed(title=None, description=None, color=None, author=None,
     if image: embed.set_image(url=image)
     if footer: embed.set_footer(text=footer)
     else: embed.set_footer(text=str(datetime.datetime.now()).split('.')[0])
-    if fields: 
-        for i in fields: embed.add_field(name = i, value=fields[i])
+    if fields:
+        for i in fields:
+            embed.add_field(name = i[0], value=i[1],inline=i[2])
     return embed
 
 

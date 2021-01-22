@@ -98,7 +98,7 @@ class Maintenance(commands.Cog):
   @commands.command(description="Test", hidden = True)
   async def test(self, ctx, *, word):
     await ctx.send(f"{word} b")
-  
+ 
   @commands.command(description="Die",aliases=["die"], hidden = True)
   @commands.is_owner()
   async def kill(self, ctx):
