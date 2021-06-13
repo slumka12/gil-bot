@@ -77,10 +77,10 @@ class Maintenance(commands.Cog):
     #print(eType)
     eFoot = "This is likely the fault of the bots creator. DM him to let him know!"
     eColor = 16711680
-    if eType is commands.CommandNotFound:
-      await ctx.send(embed=make_embed(title="Command Not Found", color=eColor,footer=eFoot))
-    elif eType is commands.CommandInvokeError:
+    if eType is commands.CommandInvokeError:
       await ctx.send(embed=make_embed(title="Command Invoke Error",description=f"Details are: `{error.original}`", color=eColor, footer=eFoot))
+    # elif eType is commands.CommandNotFound: #took it out bc it was being annoying as fucc
+    #   await ctx.send(embed=make_embed(title="Command Not Found", color=eColor,footer=eFoot))
     elif eType is commands.MissingRequiredArgument:
       await ctx.send(embed=make_embed(title=f"Missing argument: `{error.param}`", color=eColor, footer=eFoot))
     elif eType is commands.TooManyArguments:
